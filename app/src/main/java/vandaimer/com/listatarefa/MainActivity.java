@@ -46,12 +46,12 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 contatos.remove(position);
-                                updateListTask();
+                                contatoAdapter.notifyDataSetChanged();
                             }
                         })
                         .setNegativeButton("Não", null)
                         .show();
-                return false;
+                return true;
             }
         });
 
@@ -71,17 +71,10 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
-
     public void updateListTask(){
 
         if(lvTask.getAdapter() == null){
             lvTask.setAdapter(contatoAdapter);
-            Log.d("RESUME", "ADD ADAPTER");
         }
-        lvTask.deferNotifyDataSetChanged();
     }
 }
